@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olahanmi Habeeb - Python & Flask Developer</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #1abc9c;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            background: #eef2f3;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        .project-card {
+            background: #fafafa;
+            border: 1px solid #e1e1e1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+
+        .contact-box {
+            text-align: center;
+            background: #eef9f5;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1abc9c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #16a085;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Olahanmi Habeeb</h1>
+        <p>Python & Flask Developer | Building Clean Web Solutions</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- About Me Section -->
+        <section>
+            <h2>About Me</h2>
+            <p>Motivated Python and Flask developer with hands-on experience building web applications and educational tools. Passionate about helping small businesses and creators establish a clean digital presence.</p>
+        </section>
+
+        <!-- Skills Section -->
+        <section>
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>Python</li>
+                <li>Flask</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>Git & GitHub</li>
+            </ul>
+        </section>
+
+        <!-- Projects Section -->
+        <section>
+            <h2>Projects</h2>
+            
+            <div class="project-card">
+                <h3>Insite AI: Educational Study Hub</h3>
+                <p>A web application built with Flask to help science students study Mathematic, Physics, Chemistry topics.</p>
+                <p><strong>Tech Stack:</strong> Python, Flask, HTML, CSS, JavaScript</p>
+                <!-- Replace '#' with your actual GitHub or live demo link -->
+                <a href="https://bbee.pythonanywhere.com/" target="_blank" class="btn">View Project</a>
+            </div>
+
+
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-box">
+            <h2>Get In Touch</h2>
+            <p>Have a project in mind or want to collaborate? Let's talk!</p>
+            <!-- Replace with your actual email or phone number -->
+            <p>Email: <strong>olahanmihabeeb2@gmail.com</strong></p>
+            <p>WhatsApp: <strong>+2349113167256</strong></p>
+            <a href="mailto:olahanmihabeeb2@gmail.com" class="btn">Send Me an Email</a>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Olahanmi Habeeb. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript to automatically update the copyright year -->
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
