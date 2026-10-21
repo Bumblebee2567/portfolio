@@ -4,158 +4,622 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olahanmi Habeeb | Python & Flask Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --text-muted: #64748b;
+            --bg-deep: #030712;
+            --bg-card: #0f172a;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
             line-height: 1.7;
-            margin: 0;
-            padding: 0;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        section {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-
-        .skills-list {
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            list-style: none;
-            padding: 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
         }
 
-        .skills-list li {
-            background-color: #e2e8f0;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+        .logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
             font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section with Writing BG */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(3, 7, 18, 0.9), rgba(3, 7, 18, 0.95)), url('writing.png');
+            background-size: cover;
+            background-position: center;
+            padding-top: 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+            padding: 60px 0;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 850px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            margin-bottom: 25px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent);
+        }
+
+        .typing-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            min-height: 35px;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 850px) {
+            .hero-btns {
+                justify-content: center;
+            }
         }
 
         .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
             color: white;
-            padding: 10px 20px;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            opacity: 0.95;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Profile Image Card Style */
+        .hero-img-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-card {
+            position: relative;
+            width: 280px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            background: var(--bg-card);
+        }
+
+        .profile-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Section Commons */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        /* About & Philosophy Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stats-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Skills Modern Badges */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Projects Feature Card */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 850px) {
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .project-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .project-details p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
             border-radius: 6px;
-            text-decoration: none;
+            font-size: 0.85rem;
             font-weight: 500;
-            margin-top: 15px;
-            transition: background 0.2s;
         }
 
-        .btn:hover {
-            background-color: #1d4ed8;
+        /* Contact Section */
+        .contact-box {
+            background: linear-gradient(145deg, var(--bg-card), #0b1120);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .contact-info p {
-            margin: 8px 0;
+        .contact-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
 
-        .contact-info a {
-            color: var(--primary-color);
-            text-decoration: none;
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 35px;
         }
 
-        .contact-info a:hover {
-            text-decoration: underline;
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+        }
+
+        .contact-details span {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Olahanmi Habeeb</h1>
-            <p>Python & Flask Developer | Building Clean Web Solutions & AI-Powered Tools</p>
-        </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Olahanmi<span>.dev</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <!-- About Me -->
-        <section>
-            <h2>About Me</h2>
-            <p>I am a passionate and driven Python and Flask developer who thrives at the intersection of web development and artificial intelligence. With hands-on experience building dynamic web applications, I specialize in crafting clean, scalable backends and integrating cutting-edge technologies like AI Vision models to solve real-world problems. Whether I'm designing interactive educational software or helping creators and small businesses establish a powerful digital presence, I am dedicated to writing clean code that delivers seamless user experiences.</p>
-            <a href="olahanmi-habeeb-cv.pdf" download class="btn" margin-left: 10px;">Download CV (PDF)</a>
-        </section>
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="badge">
+                        <div class="dot"></div>
+                        Available for Freelance & Full-Time Roles
+                    </div>
+                    <h1>Crafting Scalable Code & <span>AI Solutions</span></h1>
+                    
+                    <div class="typing-title">
+                        <span id="typing-text"></span>
+                    </div>
 
-        <!-- Skills -->
-        <section>
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>Python</li>
-                <li>Flask</li>
-                <li>AI Integration & Vision</li>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
-                <li>Git & GitHub</li>
-            </ul>
-        </section>
+                    <p>Python & Flask Developer | Building robust backend architectures, dynamic user interfaces, and intelligent web tools that scale seamlessly.</p>
+                    
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">Explore My Work</a>
+                        <a href="#contact" class="btn btn-outline">Let's Connect</a>
+                    </div>
+                </div>
 
-        <!-- Projects -->
-        <section>
-            <h2>Projects</h2>
-            <h3>Insite AI: Educational Study Hub</h3>
-            <p>An advanced, intelligent web application designed to revolutionize how science students tackle complex subjects. Built with Flask, Insite AI leverages modern web architecture and artificial intelligence to assist learners with breaking down difficult topics in Mathematics, Physics, and Chemistry. It provides clear, step-by-step problem-solving guides and educational explanations, making high-level science accessible and engaging for everyone.</p>
-            <p><strong>Tech Stack:</strong> Python, Flask, AI Models, HTML, CSS, JavaScript</p>
-            <a href="https://bbee.pythonanywhere.com/" class="btn" target="_blank">View Project</a>
-        </section>
-
-        <!-- Get In Touch -->
-        <section>
-            <h2>Get In Touch</h2>
-            <p>Have a project in mind, want to collaborate, or just want to chat about Python and AI? Let's talk!</p>
-            <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:olahanmihabeeb2@gmail.com">olahanmihabeeb2@gmail.com</a></p>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/2349113167256" target="_blank">+234 911 316 7256</a></p>
+                <div class="hero-img-container">
+                    <div class="profile-card">
+                        <!-- Make sure to download a developer picture and name it profile.jpg -->
+                        <img src="profile.jpg" alt="Olahanmi Habeeb">
+                    </div>
+                </div>
             </div>
-            <a href="mailto:olahanmihabeeb2@gmail.com" class="btn">Send Me an Email</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <h2>Background & Passion</h2>
+                <p>Dedicated engineer bridging the gap between back-end engineering and modern user interaction.</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am a passionate, detail-oriented Python and Flask developer who thrives at the intersection of web development and artificial intelligence. With hands-on experience building dynamic web applications, I specialize in crafting clean, scalable backends and integrating cutting-edge technologies like AI Vision models to solve real-world problems.</p>
+                    <p>Whether I'm designing interactive software or helping creators and small businesses establish a powerful digital footprint, I am dedicated to writing clean, maintainable code that delivers seamless user experiences.</p>
+                </div>
+                
+                <div class="stats-box">
+                    <div class="stat-card">
+                        <h3>100%</h3>
+                        <p>Dedicated Code Quality</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>AI+</h3>
+                        <p>Integration Focus</p>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <h2>Technical Expertise</h2>
+                <p>Technologies and tools I use to bring ideas to life.</p>
+            </div>
+
+            <div class="skills-container">
+                <div class="skill-badge">Python</div>
+                <div class="skill-badge">Flask</div>
+                <div class="skill-badge">JavaScript</div>
+                <div class="skill-badge">HTML5</div>
+                <div class="skill-badge">CSS3</div>
+                <div class="skill-badge">React</div>
+                <div class="skill-badge">React Native</div>
+                <div class="skill-badge">AI Integration</div>
+                <div class="skill-badge">Git & GitHub</div>
+                <div class="skill-badge">RESTful APIs</div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section id="projects">
+            <div class="section-header">
+                <h2>Featured Project</h2>
+                <p>A showcase of my production-ready application work.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-details">
+                    <h3>Insite AI: Educational Study Hub</h3>
+                    <p>An advanced, intelligent web application designed to revolutionize how science students tackle complex subjects. Built with Flask, Insite AI leverages modern web architecture and artificial intelligence to assist learners with breaking down difficult topics in Mathematics, Physics, and Chemistry, providing step-by-step problem-solving guides.</p>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">AI Models</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML/CSS</span>
+                    <div class="hero-btns">
+                        <a href="https://your-live-website-link.com" target="_blank" class="btn btn-primary">View Live Demo</a>
+                        <a href="https://github.com/Bumblebee2567/your-repo-name" target="_blank" class="btn btn-outline">Source Code</a>
+                    </div>
+                        
+                <div style="background: var(--bg-deep); border: 1px solid var(--border); border-radius: 14px; padding: 30px; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                    <h4 style="color: var(--accent); margin-bottom: 10px; font-size: 1.2rem;">Full-Stack Architecture</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Engineered from the ground up for lightning-fast routing, dynamic response rendering, and seamless cross-device compatibility.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" style="border: none;">
+            <div class="contact-box">
+                <h2>Let's Build Something Amazing</h2>
+                <p>Have a project in mind, want to collaborate, or just want to chat about Python, React, and AI? Let's talk!</p>
+                
+                <div class="contact-details">
+                    <div>📧 Email: <span>olahanmihabeeb2@gmail.com</span></div>
+                    <div>📱 WhatsApp: <span>+234 911 316 7256</span></div>
+                </div>
+
+                <div class="hero-btns" style="justify-content: center;">
+                    <a href="mailto:olahanmihabeeb2@gmail.com" class="btn btn-primary">Send Me an Email</a>
+                    <a href="https://wa.me/2349113167256" target="_blank" class="btn btn-outline">Chat on WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Olahanmi Habeeb. Built with passion & precision.</p>
+    </footer>
+
+    <!-- Typing Effect Script -->
+    <script>
+        const words = [
+            "Python & Flask Developer", 
+            "Full-Stack Web Designer", 
+            "AI Integration Specialist",
+            "React & React Native Enthusiast"
+        ];
+        let i = 0;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typing-text').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return;
+                }
+                setTimeout(loopTyping, 90);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typing-text').innerHTML = word.join("");
+                } else {
+                    i = (i + 1) % words.length;
+                    setTimeout(typingEffect, 400);
+                    return;
+                }
+                setTimeout(loopDeleting, 45);
+            };
+            loopDeleting();
+        }
+
+        typingEffect();
+    </script>
 
 </body>
 </html>
