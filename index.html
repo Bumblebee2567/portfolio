@@ -426,7 +426,77 @@
             color: var(--text-muted);
             font-size: 0.9rem;
         }
-    </style>
+        /* --- Mobile Responsive Navigation Fix --- */
+    @media (max-width: 480px) {
+        /* Make the nav container stack items vertically */
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+            height: auto; /* Remove fixed desktop heights if you have any */
+        }
+    
+        /* Fix the logo/name so it doesn't overlap */
+        nav .logo {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    
+        /* Wrap nav links into a clean, multi-line or centered block */
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+    
+        .nav-links li a {
+            font-size: 14px;
+            padding: 6px 10px;
+        }
+    }
+
+        /* --- Mobile Responsive Navigation Fix --- */
+    @media (max-width: 480px) {
+    /* Make the nav container stack items vertically */
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+            height: auto; /* Remove fixed desktop heights if you have any */
+        }
+    
+        /* Fix the logo/name so it doesn't overlap */
+        nav .logo {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    
+        /* Wrap nav links into a clean, multi-line or centered block */
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+    
+        .nav-links li a {
+            font-size: 14px;
+            padding: 6px 10px;
+        }
+    }
+
+</style>
 </head>
 <body>
 
